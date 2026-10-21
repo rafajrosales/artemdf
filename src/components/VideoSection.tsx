@@ -178,7 +178,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
       {/* Subtle warm festive glow in background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#E09F3E]/5 blur-[160px] pointer-events-none rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-8">
           <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#E8AF50] bg-[#271C14] px-3.5 py-1.5 rounded-full border border-[#E8AF50]/30 shadow-inner">
@@ -186,7 +186,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
             <span>Galería Audiovisual · Taller Láser LED 40 cm</span>
           </div>
 
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F7EFE6] text-balance">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F7EFE6] text-balance">
             {activeTab === 'navidad' ? (
               <>
                 Especial <span className="text-[#E8AF50]">Temporada Navideña</span> en MDF 3 mm
@@ -198,33 +198,33 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
             )}
           </h2>
 
-          <p className="text-sm sm:text-base text-[#C7B5A6] leading-relaxed">
+          <p className="text-xs sm:text-base text-[#C7B5A6] leading-relaxed">
             {currentConfig.description}
           </p>
 
           {/* Interactive Mode Switcher Tabs */}
-          <div className="inline-flex items-center p-1.5 rounded-xl bg-[#120D08] border border-[#3D2C20] shadow-lg mt-2">
+          <div className="flex flex-col sm:inline-flex sm:flex-row items-stretch sm:items-center p-1 sm:p-1.5 rounded-xl bg-[#120D08] border border-[#3D2C20] shadow-lg mt-2 w-full sm:w-auto gap-1.5 sm:gap-0">
             <button
               onClick={() => setActiveTab('navidad')}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all duration-200 ${
+              className={`flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all duration-200 min-h-[42px] ${
                 activeTab === 'navidad'
                   ? 'bg-gradient-to-r from-[#8B261E] via-[#A83226] to-[#C93B2B] text-white shadow-md shadow-red-950/60 ring-1 ring-red-400/40'
                   : 'text-[#C7B5A6] hover:text-[#F7EFE6] hover:bg-[#1E1712]'
               }`}
             >
-              <TreePine className="w-4 h-4 text-emerald-300" />
+              <TreePine className="w-4 h-4 text-emerald-300 shrink-0" />
               <span>🎄 Edición Navideña (Villa sin Luz)</span>
             </button>
 
             <button
               onClick={() => setActiveTab('showreel')}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all duration-200 ${
+              className={`flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all duration-200 min-h-[42px] ${
                 activeTab === 'showreel'
                   ? 'bg-[#E09F3E] text-[#17110C] font-bold shadow-md shadow-[#E09F3E]/20'
                   : 'text-[#C7B5A6] hover:text-[#F7EFE6] hover:bg-[#1E1712]'
               }`}
             >
-              <Video className="w-4 h-4" />
+              <Video className="w-4 h-4 shrink-0" />
               <span>Showreel del Taller (Técnicas & Kerf)</span>
             </button>
           </div>
@@ -288,7 +288,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
             </div>
 
             {/* Custom Control Bar */}
-            <div className="p-4 bg-[#1E1712] border-t border-[#3D2C20] space-y-2.5">
+            <div className="p-3 sm:p-4 bg-[#1E1712] border-t border-[#3D2C20] space-y-2.5">
               {/* Progress Slider */}
               <input
                 type="range"
@@ -296,15 +296,15 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
                 max="100"
                 value={progress}
                 onChange={handleSeek}
-                className="w-full h-1.5 bg-[#3B291D] rounded-lg appearance-none cursor-pointer accent-[#E09F3E]"
+                className="w-full h-2 bg-[#3B291D] rounded-lg appearance-none cursor-pointer accent-[#E09F3E]"
                 aria-label="Progreso del video"
               />
 
               <div className="flex items-center justify-between text-xs text-[#C7B5A6]">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1 sm:gap-2">
                   <button
                     onClick={togglePlay}
-                    className="p-1.5 hover:text-[#E8AF50] transition-colors rounded-md hover:bg-[#2A1F17]"
+                    className="w-9 h-9 flex items-center justify-center hover:text-[#E8AF50] transition-colors rounded-lg hover:bg-[#2A1F17] active:scale-95"
                     aria-label={isPlaying ? 'Pausar' : 'Reproducir'}
                   >
                     {isPlaying ? <Pause className="w-4 h-4 text-[#E8AF50]" /> : <Play className="w-4 h-4" />}
@@ -312,7 +312,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
 
                   <button
                     onClick={handleRestart}
-                    className="p-1.5 hover:text-[#E8AF50] transition-colors rounded-md hover:bg-[#2A1F17]"
+                    className="w-9 h-9 flex items-center justify-center hover:text-[#E8AF50] transition-colors rounded-lg hover:bg-[#2A1F17] active:scale-95"
                     aria-label="Reiniciar video"
                   >
                     <RotateCcw className="w-4 h-4" />
@@ -320,33 +320,33 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
 
                   <button
                     onClick={toggleMute}
-                    className="p-1.5 hover:text-[#E8AF50] transition-colors rounded-md hover:bg-[#2A1F17]"
+                    className="w-9 h-9 flex items-center justify-center hover:text-[#E8AF50] transition-colors rounded-lg hover:bg-[#2A1F17] active:scale-95"
                     aria-label={isMuted ? 'Activar sonido' : 'Silenciar'}
                   >
                     {isMuted ? <VolumeX className="w-4 h-4 text-amber-500" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
                   </button>
 
-                  <span className="text-[#9E8B7E] font-mono text-[11px] hidden sm:inline">
+                  <span className="text-[#9E8B7E] font-mono text-[11px] hidden sm:inline ml-1">
                     ArteMDF · {activeTab === 'navidad' ? 'Villa Navideña 3 mm (35s)' : 'Taller Láser LED 40 cm'}
                   </span>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   {activeTab === 'navidad' && (
                     <a
                       href={GOOGLE_PHOTOS_URL}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-[11px] text-[#E8AF50] hover:underline flex items-center gap-1 font-medium hidden md:inline-flex"
+                      className="text-[11px] text-[#E8AF50] hover:underline flex items-center gap-1 font-medium px-2 py-1 rounded bg-[#271C14] border border-[#E09F3E]/30"
                     >
-                      <span>Ver en Google Photos HD</span>
+                      <span>Google Photos</span>
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   )}
 
                   <button
                     onClick={handleFullscreen}
-                    className="p-1.5 hover:text-[#E8AF50] transition-colors rounded-md hover:bg-[#2A1F17]"
+                    className="w-9 h-9 flex items-center justify-center hover:text-[#E8AF50] transition-colors rounded-lg hover:bg-[#2A1F17] active:scale-95"
                     aria-label="Pantalla completa"
                   >
                     <Maximize2 className="w-4 h-4" />

@@ -215,30 +215,30 @@ ${attachedFileName ? `- *Archivo de referencia:* ${attachedFileName}` : ''}
   };
 
   return (
-    <section id="cotizador" className="py-24 bg-[#1B140E] border-b border-[#3D2C20]">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="cotizador" className="py-16 sm:py-24 bg-[#1B140E] border-b border-[#3D2C20]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-12">
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#E8AF50]">
             <Calculator className="w-3.5 h-3.5" />
             <span>Cotizador Interactivo · MDF 3 mm · Zona Norte & Tecámac</span>
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[#F7EFE6] text-balance">
+          <h2 className="font-display text-2xl sm:text-4xl font-bold tracking-tight text-[#F7EFE6] text-balance">
             Calcula tu presupuesto personalizado
           </h2>
-          <p className="text-sm text-[#C7B5A6]">
+          <p className="text-xs sm:text-sm text-[#C7B5A6]">
             Configura tu pieza en <strong>MDF de 3 mm</strong> (hasta <strong>40 cm</strong>), selecciona tu zona de entrega y obtén el desglose exacto al instante.
           </p>
         </div>
 
         {/* 40cm, 3mm & Delivery Policy Notice Banner */}
-        <div className="mb-8 p-4 bg-[#261C14] border border-[#523B2A] rounded-xl flex items-start gap-3.5 text-xs text-[#D8B589]">
+        <div className="mb-6 sm:mb-8 p-3.5 sm:p-4 bg-[#261C14] border border-[#523B2A] rounded-xl flex items-start gap-3 text-xs text-[#D8B589]">
           <AlertCircle className="w-5 h-5 text-[#E09F3E] shrink-0 mt-0.5" />
           <div className="space-y-1">
             <span className="font-bold text-[#F7EFE6] block">
               Taller ArteMDF: MDF 3 mm · Cama 40x40 cm · Políticas de Entrega
             </span>
-            <p className="text-[#BCAAA0] leading-relaxed">
+            <p className="text-[#BCAAA0] leading-relaxed text-[11px] sm:text-xs">
               • <strong>Zona Norte CDMX y zonas cercanas</strong>: Entregas personales a convenir en puntos acordados (sin costo extra).<br />
               • <strong>Los Héroes Tecámac y alrededores</strong>: Aplica un <strong>10% adicional</strong> por concepto de traslado.<br />
               • <strong>Entrega directa en mano</strong>: No realizamos envíos a otros estados de la República Mexicana para asegurar la calidad de cada pieza.
@@ -248,7 +248,7 @@ ${attachedFileName ? `- *Archivo de referencia:* ${attachedFileName}` : ''}
 
         {/* Selected Item Notification Banner if imported from Gallery */}
         {selectedItem && (
-          <div className="mb-8 p-4 bg-[#2A1F16] border border-[#E09F3E]/40 rounded-xl flex items-center justify-between gap-4">
+          <div className="mb-6 sm:mb-8 p-3.5 sm:p-4 bg-[#2A1F16] border border-[#E09F3E]/40 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
             <div className="flex items-center gap-3">
               <img
                 src={selectedItem.image}
@@ -258,13 +258,13 @@ ${attachedFileName ? `- *Archivo de referencia:* ${attachedFileName}` : ''}
               />
               <div className="text-xs">
                 <span className="text-[#E8AF50] font-semibold block">Cotizando modelo seleccionado:</span>
-                <span className="text-white font-medium">{selectedItem.title}</span>
+                <span className="text-white font-medium block text-xs sm:text-sm">{selectedItem.title}</span>
               </div>
             </div>
 
             <button
               onClick={onClearSelectedItem}
-              className="text-xs text-[#BCAAA0] hover:text-white px-3 py-1.5 rounded-lg bg-[#1E1610] border border-[#3D2C20] hover:border-[#5C4533] transition-colors"
+              className="text-xs text-[#BCAAA0] hover:text-white px-3 py-1.5 rounded-lg bg-[#1E1610] border border-[#3D2C20] hover:border-[#5C4533] transition-colors self-start sm:self-auto"
             >
               Cambiar modelo
             </button>
@@ -273,7 +273,7 @@ ${attachedFileName ? `- *Archivo de referencia:* ${attachedFileName}` : ''}
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Configuration Form: 7 cols */}
-          <div className="lg:col-span-7 bg-[#211812] border border-[#3D2C20] rounded-2xl p-6 sm:p-8 space-y-8 shadow-xl">
+          <div className="lg:col-span-7 bg-[#211812] border border-[#3D2C20] rounded-2xl p-4 sm:p-8 space-y-6 sm:space-y-8 shadow-xl">
             {/* Step 1: Tipo de Proyecto */}
             <div className="space-y-3">
               <label className="text-xs font-semibold text-[#F7EFE6] uppercase tracking-wider flex items-center justify-between">
@@ -281,7 +281,7 @@ ${attachedFileName ? `- *Archivo de referencia:* ${attachedFileName}` : ''}
                 <span className="text-[#9E8C7E] font-normal">Paso 1 de 4</span>
               </label>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5">
                 {[
                   { id: 'altar', label: 'Altar Tradicional', desc: '1 a 3 niveles (máx 40cm)' },
                   { id: 'lampara', label: 'Lámpara con Luz', desc: 'LED cálido y difusor' },

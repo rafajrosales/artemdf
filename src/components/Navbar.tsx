@@ -21,24 +21,36 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         isScrolled
           ? 'bg-[#18120D]/95 backdrop-blur-md border-b border-[#3D2C20] shadow-lg shadow-black/40'
-          : 'bg-transparent border-b border-[#33251B]/40'
+          : 'bg-[#17110C]/80 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none border-b border-[#33251B]/40'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-4">
         {/* Zone 1: Brand wordmark (single element, warm MDF wood aesthetic) */}
         <a
           href="#"
-          className="flex items-center gap-2.5 text-[#F7EFE6] hover:text-[#E8AF50] transition-colors whitespace-nowrap shrink-0 group"
+          className="flex items-center gap-2 text-[#F7EFE6] hover:text-[#E8AF50] transition-colors whitespace-nowrap shrink-0 group"
         >
-          <div className="w-9 h-9 rounded-lg bg-[#E09F3E]/15 border border-[#E09F3E]/30 flex items-center justify-center text-[#E8AF50] group-hover:bg-[#E09F3E]/25 transition-colors">
-            <Sparkles className="w-5 h-5" />
+          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#E09F3E]/15 border border-[#E09F3E]/30 flex items-center justify-center text-[#E8AF50] group-hover:bg-[#E09F3E]/25 transition-colors">
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
           </div>
-          <span className="font-display font-bold text-2xl tracking-tight text-[#F7EFE6]">
+          <span className="font-display font-bold text-xl sm:text-2xl tracking-tight text-[#F7EFE6]">
             Arte<span className="text-[#E8AF50]">MDF</span>
           </span>
         </a>
@@ -124,84 +136,98 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
         </div>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer with backdrop */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#1E1712] border-b border-[#3D2C20] px-6 py-6 space-y-4">
-          <nav className="flex flex-col space-y-3 text-base text-[#D4C5B8]">
-            <a
-              href="#galeria"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-1 hover:text-[#E8AF50] transition-colors"
-            >
-              Galería de Obras
-            </a>
-            <a
-              href="#showreel"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-1 hover:text-[#E8AF50] transition-colors flex items-center gap-1.5"
-            >
-              <span>Video & Navidad</span>
-              <span>🎄</span>
-            </a>
-            <a
-              href="#taller"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-1 hover:text-[#E8AF50] transition-colors"
-            >
-              Taller & Láser 40cm
-            </a>
-            <a
-              href="#preguntas"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-1 hover:text-[#E8AF50] transition-colors"
-            >
-              Preguntas Frecuentes
-            </a>
-            <a
-              href="#contacto"
-              onClick={() => setMobileMenuOpen(false)}
-              className="py-1 hover:text-[#E8AF50] transition-colors"
-            >
-              Contacto Directo
-            </a>
-          </nav>
-          <div className="pt-2 border-t border-[#3D2C20] space-y-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                setIsAdminOpen(true);
-              }}
-              className={`w-full py-2.5 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 ${
-                isAdmin
-                  ? 'text-emerald-300 bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-500/40'
-                  : 'text-[#E8AF50] hover:text-[#17110C] bg-[#281D15] hover:bg-[#E09F3E] border border-[#E09F3E]/40'
-              }`}
-            >
-              {isAdmin ? (
-                <>
-                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                  <span>Admin Activo: {user?.email || 'rafajrosales@gmail.com'}</span>
-                </>
-              ) : (
-                <>
-                  <Lock className="w-4 h-4 text-[#E09F3E]" />
-                  <span>Panel de Precios & Fotos (Google Auth)</span>
-                </>
-              )}
-            </button>
+        <>
+          <div 
+            className="md:hidden fixed inset-0 top-16 sm:top-20 z-40 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="md:hidden relative z-50 bg-[#1E1712] border-b border-[#3D2C20] px-5 py-6 space-y-4 max-h-[calc(100vh-4rem)] overflow-y-auto shadow-2xl animate-in slide-in-from-top-2 duration-200">
+            <nav className="flex flex-col space-y-1 text-base text-[#D4C5B8]">
+              <a
+                href="#galeria"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2.5 px-3 rounded-lg hover:bg-[#2A1F17] hover:text-[#E8AF50] transition-colors flex items-center justify-between"
+              >
+                <span>Galería de Obras</span>
+                <span className="text-xs text-[#8F7D70]">→</span>
+              </a>
+              <a
+                href="#showreel"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2.5 px-3 rounded-lg hover:bg-[#2A1F17] hover:text-[#E8AF50] transition-colors flex items-center justify-between"
+              >
+                <span className="flex items-center gap-1.5">
+                  <span>Video & Especial Navidad</span>
+                  <span>🎄</span>
+                </span>
+                <span className="text-xs text-amber-400 font-semibold">Ver Video →</span>
+              </a>
+              <a
+                href="#taller"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2.5 px-3 rounded-lg hover:bg-[#2A1F17] hover:text-[#E8AF50] transition-colors flex items-center justify-between"
+              >
+                <span>Taller & Láser 40cm</span>
+                <span className="text-xs text-[#8F7D70]">→</span>
+              </a>
+              <a
+                href="#preguntas"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2.5 px-3 rounded-lg hover:bg-[#2A1F17] hover:text-[#E8AF50] transition-colors flex items-center justify-between"
+              >
+                <span>Preguntas Frecuentes</span>
+                <span className="text-xs text-[#8F7D70]">→</span>
+              </a>
+              <a
+                href="#contacto"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2.5 px-3 rounded-lg hover:bg-[#2A1F17] hover:text-[#E8AF50] transition-colors flex items-center justify-between"
+              >
+                <span>Contacto Directo</span>
+                <span className="text-xs text-[#8F7D70]">→</span>
+              </a>
+            </nav>
+            <div className="pt-3 border-t border-[#3D2C20] space-y-2.5">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setIsAdminOpen(true);
+                }}
+                className={`w-full py-3 px-3 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 min-h-[44px] ${
+                  isAdmin
+                    ? 'text-emerald-300 bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-500/40'
+                    : 'text-[#E8AF50] hover:text-[#17110C] bg-[#281D15] hover:bg-[#E09F3E] border border-[#E09F3E]/40'
+                }`}
+              >
+                {isAdmin ? (
+                  <>
+                    <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                    <span>Admin Activo: {user?.email || 'rafajrosales@gmail.com'}</span>
+                  </>
+                ) : (
+                  <>
+                    <Lock className="w-4 h-4 text-[#E09F3E]" />
+                    <span>Panel de Precios & Fotos (Google Auth)</span>
+                  </>
+                )}
+              </button>
 
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenQuote();
-              }}
-              className="w-full py-3 text-xs font-semibold uppercase tracking-wider text-[#17110C] bg-[#E09F3E] hover:bg-[#ECAE52] rounded-lg transition-colors flex items-center justify-center gap-2"
-            >
-              <MessageSquare className="w-4 h-4" />
-              <span>Solicitar Presupuesto (Hasta 40cm)</span>
-            </button>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenQuote();
+                }}
+                className="w-full py-3.5 px-4 text-xs font-semibold uppercase tracking-wider text-[#17110C] bg-[#E09F3E] hover:bg-[#ECAE52] rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg min-h-[44px]"
+              >
+                <MessageSquare className="w-4 h-4" />
+                <span>Solicitar Presupuesto (Hasta 40cm)</span>
+              </button>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );

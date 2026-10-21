@@ -39,18 +39,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote, onSelectHeroItem }) => 
   const currentItem = HERO_SLIDES[activeSlide];
 
   return (
-    <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden border-b border-[#3D2C20]">
+    <section className="relative pt-24 pb-12 sm:pt-32 sm:pb-16 md:pt-40 md:pb-24 overflow-hidden border-b border-[#3D2C20]">
       {/* Warm laser glow in background */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-[#E09F3E]/8 blur-[150px] pointer-events-none rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Split Hero: Left Column Typography, Right Column Visual Anchor */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
           {/* Left Column: 7 cols */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#E8AF50]">
-                <Sparkles className="w-3.5 h-3.5" />
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+              <div className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-[#E8AF50]">
+                <Sparkles className="w-3.5 h-3.5 shrink-0" />
                 <span>Taller Láser LED · MDF 3 mm · Hasta 40 cm</span>
               </div>
               <a
@@ -62,19 +62,19 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote, onSelectHeroItem }) => 
               </a>
             </div>
 
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#F7EFE6] text-balance leading-[1.1]">
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#F7EFE6] text-balance leading-[1.15] sm:leading-[1.1]">
               El arte del <span className="text-[#E8AF50]">corte láser</span> en madera <span className="text-[#D8B589]">MDF 3 mm</span>.
             </h1>
 
-            <p className="text-base sm:text-lg text-[#C7B5A6] max-w-2xl font-normal leading-relaxed">
+            <p className="text-sm sm:text-lg text-[#C7B5A6] max-w-2xl font-normal leading-relaxed">
               Diseñamos y fabricamos piezas exclusivas cortadas con tecnología láser LED de alta definición sobre <strong>MDF de 3 mm únicamente</strong>.
               Especialistas en altares tradicionales, luminarias cálidas, alhajeros curvos living hinge y recuerdos conmemorativos en área útil de hasta <strong>40 x 40 cm</strong>.
             </p>
 
-            <div className="pt-2 flex flex-wrap items-center gap-4">
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
               <a
                 href="#galeria"
-                className="px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-[#17110C] bg-[#E09F3E] hover:bg-[#ECAE52] rounded-lg shadow-md shadow-[#E09F3E]/20 transition-all transform active:scale-95 whitespace-nowrap flex items-center gap-2"
+                className="px-6 py-3.5 min-h-[48px] text-xs font-semibold uppercase tracking-wider text-[#17110C] bg-[#E09F3E] hover:bg-[#ECAE52] rounded-lg shadow-md shadow-[#E09F3E]/20 transition-all transform active:scale-95 whitespace-nowrap flex items-center justify-center gap-2"
               >
                 <span>Explorar Galería</span>
                 <ArrowRight className="w-4 h-4" />
@@ -82,7 +82,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote, onSelectHeroItem }) => 
 
               <button
                 onClick={onOpenQuote}
-                className="px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-[#F7EFE6] hover:text-white bg-[#261C14] hover:bg-[#33251B] border border-[#4D382A] rounded-lg transition-all whitespace-nowrap flex items-center gap-2"
+                className="px-6 py-3.5 min-h-[48px] text-xs font-semibold uppercase tracking-wider text-[#F7EFE6] hover:text-white bg-[#261C14] hover:bg-[#33251B] border border-[#4D382A] rounded-lg transition-all whitespace-nowrap flex items-center justify-center gap-2 active:scale-95"
               >
                 <Sliders className="w-4 h-4 text-[#E8AF50]" />
                 <span>Cotizar en MDF 3mm (Máx. 40cm)</span>

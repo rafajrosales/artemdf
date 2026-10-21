@@ -135,19 +135,19 @@ export const Gallery: React.FC<GalleryProps> = ({ onSelectForQuote, selectedItem
   };
 
   return (
-    <section id="galeria" className="py-24 bg-[#17110C] text-[#F7EFE6] border-b border-[#3D2C20]">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="galeria" className="py-16 sm:py-24 bg-[#17110C] text-[#F7EFE6] border-b border-[#3D2C20]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-[#33251B]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10 pb-6 border-b border-[#33251B]">
           <div className="space-y-2 max-w-xl">
             <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#E8AF50]">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Obras en Madera MDF · Hasta 40 cm</span>
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[#F7EFE6] text-balance">
+            <h2 className="font-display text-2xl sm:text-4xl font-bold tracking-tight text-[#F7EFE6] text-balance">
               Galería interactiva de piezas y ensambles
             </h2>
-            <p className="text-sm text-[#C7B5A6]">
+            <p className="text-xs sm:text-sm text-[#C7B5A6]">
               Explora nuestros trabajos en MDF natural y tintado. Cortes y grabados láser LED de alta fidelidad, listos para personalizar o pedir tal como los ves.
             </p>
           </div>
@@ -176,7 +176,7 @@ export const Gallery: React.FC<GalleryProps> = ({ onSelectForQuote, selectedItem
 
             <button
               onClick={() => setIsAdminOpen(true)}
-              className="px-3.5 py-2.5 text-xs font-semibold text-[#E8AF50] hover:text-[#17110C] bg-[#2A1F17] hover:bg-[#E09F3E] border border-[#E09F3E]/40 rounded-lg transition-all flex items-center justify-center gap-1.5 shrink-0 shadow-sm"
+              className="px-3.5 py-2.5 min-h-[42px] text-xs font-semibold text-[#E8AF50] hover:text-[#17110C] bg-[#2A1F17] hover:bg-[#E09F3E] border border-[#E09F3E]/40 rounded-lg transition-all flex items-center justify-center gap-1.5 shrink-0 shadow-sm active:scale-95"
               title="Abrir panel para actualizar fotos y precios de todas las piezas"
             >
               <Edit3 className="w-3.5 h-3.5" />
@@ -186,14 +186,14 @@ export const Gallery: React.FC<GalleryProps> = ({ onSelectForQuote, selectedItem
         </div>
 
         {/* Interactive Filter Controls & Sort Options */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
-          {/* Segmented Category Buttons */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 lg:pb-0 scrollbar-none">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 sm:mb-8">
+          {/* Segmented Category Buttons - Scroll smoothly edge-to-edge on mobile */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 lg:pb-0 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
             {CATEGORIES.map(category => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-3.5 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 ${
+                className={`px-3.5 py-2 text-xs font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 min-h-[38px] ${
                   activeCategory === category
                     ? 'bg-[#E09F3E] text-[#17110C] font-semibold shadow-sm'
                     : 'bg-[#231A13] text-[#C7B5A6] hover:text-white hover:bg-[#2F231A] border border-[#3D2C20]'
@@ -205,13 +205,13 @@ export const Gallery: React.FC<GalleryProps> = ({ onSelectForQuote, selectedItem
           </div>
 
           {/* Sort & Layout Toggles */}
-          <div className="flex items-center gap-3 shrink-0 self-end lg:self-auto">
-            <div className="flex items-center gap-2 bg-[#231A13] border border-[#3D2C20] rounded-lg px-2.5 py-1.5">
-              <SlidersHorizontal className="w-3.5 h-3.5 text-[#9E8C7E]" />
+          <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0 w-full lg:w-auto">
+            <div className="flex items-center gap-2 bg-[#231A13] border border-[#3D2C20] rounded-lg px-2.5 py-1.5 flex-1 sm:flex-initial">
+              <SlidersHorizontal className="w-3.5 h-3.5 text-[#9E8C7E] shrink-0" />
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="bg-transparent text-xs text-[#D8B589] focus:outline-none cursor-pointer"
+                className="bg-transparent text-xs text-[#D8B589] focus:outline-none cursor-pointer w-full"
                 aria-label="Ordenar obras"
               >
                 <option value="featured" className="bg-[#231A13]">Destacados</option>
@@ -360,7 +360,7 @@ export const Gallery: React.FC<GalleryProps> = ({ onSelectForQuote, selectedItem
         {/* Fullscreen Lightbox Modal */}
         {activeItem && (
           <div 
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-2 sm:p-6 overflow-y-auto"
             role="dialog"
             aria-modal="true"
             aria-label={activeItem.title}
@@ -368,7 +368,7 @@ export const Gallery: React.FC<GalleryProps> = ({ onSelectForQuote, selectedItem
             {/* Close button */}
             <button
               onClick={() => { setActiveItem(null); setZoomLevel(1); }}
-              className="absolute top-5 right-5 z-20 w-10 h-10 rounded-full bg-[#231A13] hover:bg-[#33251B] text-[#C7B5A6] hover:text-white border border-[#4A3729] flex items-center justify-center transition-colors"
+              className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 w-11 h-11 rounded-full bg-[#231A13]/95 hover:bg-[#33251B] text-[#C7B5A6] hover:text-white border border-[#4A3729] flex items-center justify-center transition-colors shadow-xl active:scale-95"
               aria-label="Cerrar modal"
             >
               <X className="w-5 h-5" />
@@ -377,37 +377,37 @@ export const Gallery: React.FC<GalleryProps> = ({ onSelectForQuote, selectedItem
             {/* Navigation Arrows */}
             <button
               onClick={handlePrevItem}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-[#231A13]/90 hover:bg-[#33251B] text-[#F7EFE6] border border-[#4A3729] flex items-center justify-center transition-colors"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#231A13]/90 hover:bg-[#33251B] text-[#F7EFE6] border border-[#4A3729] flex items-center justify-center transition-colors shadow-xl active:scale-95"
               aria-label="Foto anterior"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <button
               onClick={handleNextItem}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-[#231A13]/90 hover:bg-[#33251B] text-[#F7EFE6] border border-[#4A3729] flex items-center justify-center transition-colors"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#231A13]/90 hover:bg-[#33251B] text-[#F7EFE6] border border-[#4A3729] flex items-center justify-center transition-colors shadow-xl active:scale-95"
               aria-label="Siguiente foto"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
 
             {/* Lightbox Content Container */}
-            <div className="max-w-5xl w-full max-h-[90vh] bg-[#1C140E] border border-[#4A3729] rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 shadow-2xl relative z-10">
+            <div className="max-w-5xl w-full max-h-[94vh] sm:max-h-[90vh] bg-[#1C140E] border border-[#4A3729] rounded-2xl overflow-y-auto lg:overflow-hidden grid grid-cols-1 lg:grid-cols-12 shadow-2xl relative z-10">
               {/* Media Column: 7 cols */}
-              <div className="lg:col-span-7 bg-[#100B07] flex flex-col items-center justify-center relative overflow-hidden min-h-[300px] lg:min-h-[500px]">
+              <div className="lg:col-span-7 bg-[#100B07] flex flex-col items-center justify-center relative overflow-hidden min-h-[240px] sm:min-h-[360px] lg:min-h-[500px]">
                 <div 
-                  className="w-full h-full flex items-center justify-center p-4 transition-transform duration-200"
+                  className="w-full h-full flex items-center justify-center p-3 sm:p-4 transition-transform duration-200"
                   style={{ transform: `scale(${zoomLevel})` }}
                 >
                   <img
                     src={activeItem.image}
                     alt={activeItem.title}
                     referrerPolicy="no-referrer"
-                    className="max-w-full max-h-[75vh] object-contain rounded-lg"
+                    className="max-w-full max-h-[45vh] sm:max-h-[65vh] lg:max-h-[75vh] object-contain rounded-lg"
                   />
                 </div>
 
                 {/* Zoom Controls Bar */}
-                <div className="absolute bottom-4 left-4 bg-[#231A13]/90 backdrop-blur-md border border-[#4A3729] rounded-lg p-1 flex items-center gap-1">
+                <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 bg-[#231A13]/90 backdrop-blur-md border border-[#4A3729] rounded-lg p-1 flex items-center gap-1 z-20">
                   <button
                     onClick={() => setZoomLevel(prev => Math.max(0.75, prev - 0.25))}
                     className="p-1.5 text-[#C7B5A6] hover:text-white transition-colors"
@@ -429,7 +429,7 @@ export const Gallery: React.FC<GalleryProps> = ({ onSelectForQuote, selectedItem
               </div>
 
               {/* Info Column: 5 cols */}
-              <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto space-y-6">
+              <div className="lg:col-span-5 p-4 sm:p-8 flex flex-col justify-between overflow-y-auto space-y-5 sm:space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-xs text-[#E8AF50] font-medium">
                     <span>{activeItem.category}</span>
