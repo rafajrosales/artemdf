@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Custom MDF & Laser Cutting Artisan Palette */
+  --color-mdf-canvas: #17110C;
+  --color-mdf-surface: #231912;
+  --color-mdf-surface-light: #2E2219;
+  --color-mdf-surface-card: #281D15;
+  --color-mdf-border: #443224;
+  --color-mdf-border-subtle: #36271C;
+  --color-mdf-border-char: #5A4230;
+
+  --color-mdf-raw: #D8B589;
+  --color-mdf-pine: #E5CBA7;
+  --color-mdf-toasted: #B38652;
+  --color-mdf-laser: #E09F3E;
+  --color-mdf-amber: #F0AC42;
+  --color-mdf-caramel: #C77826;
+
+  --color-mdf-text-main: #F7EFE6;
+  --color-mdf-text-muted: #BCABA0;
+  --color-mdf-text-dim: #8B7A6E;
+}
+
+:root {
+  font-family: var(--font-sans);
+  background-color: #17110C;
+  color: #F7EFE6;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Custom subtle scrollbar in roasted wood tone */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #17110C;
+}
+::-webkit-scrollbar-thumb {
+  background: #443224;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6E533D;
+}

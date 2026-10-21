@@ -1,0 +1,6 @@
+{
+  "name": "ArteMDF | Corte y Grabado Láser en MDF 3 mm",
+  "description": "Taller artesanal de corte y grabado láser LED en MDF de 3 mm únicamente. Piezas de hasta 40 cm: altares de Día de Muertos, lámparas cálidas, alhajeros curvos y presupuestos personalizados.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
