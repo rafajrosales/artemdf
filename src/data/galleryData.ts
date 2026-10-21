@@ -119,15 +119,15 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: 'villa-navidena-casitas-mdf',
-    title: 'Villa Navideña Artesanal (Set de Casitas & Árbol Iluminado)',
+    title: 'Villa Navideña Artesanal (Set de Casitas & Árbol en MDF - Sin Luz)',
     category: 'Navidad & Festivos',
     image: '/gallery/navidad_thumb_01.jpg',
-    tags: ['Villa Navideña', 'Casitas MDF', 'Navidad', 'Árbol Iluminado', 'Nacimiento', 'Luz Cálida', 'Video de Temporada'],
-    description: 'Aldea navideña artesanal en MDF 3 mm con set de casitas de tejado a dos aguas, chimeneas, ventanas caladas y pino navideño central iluminado. Destacado en el video de temporada navideña.',
+    tags: ['Villa Navideña', 'Casitas MDF', 'Navidad', 'Sin Luz', 'Madera Natural', 'Nacimiento', 'Video de Temporada'],
+    description: 'Aldea navideña artesanal en MDF de 3 mm al natural (modelo sin luz ni instalación eléctrica). Incluye conjunto de casitas con tejados a dos aguas, chimeneas, celosías de ventanas y pino navideño central. Ideal para nacimientos, centros de mesa y repisas.',
     dimensions: 'Casitas de 8 a 12 cm de alto (set modular hasta 40 cm)',
     mdfThickness: 'MDF 3 mm exclusivo',
     productionTime: '2 a 3 días hábiles',
-    estimatedPriceMxn: 390,
+    estimatedPriceMxn: 350,
     featured: true
   },
   {

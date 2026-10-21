@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { GALLERY_ITEMS, GalleryItem } from '../data/galleryData';
 
-const STORAGE_KEY = 'artemdf_custom_catalog_v1';
+const STORAGE_KEY = 'artemdf_custom_catalog_v2';
 
 interface CatalogContextType {
   items: GalleryItem[];
@@ -87,7 +87,9 @@ export const CatalogProvider: React.FC<{ children: React.ReactNode }> = ({ child
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          const existingIds = new Set(parsed.map((i: GalleryItem) => i.id));
+          const missingDefaults = GALLERY_ITEMS.filter(gi => !existingIds.has(gi.id));
+          return [...parsed, ...missingDefaults];
         }
       }
     } catch (e) {

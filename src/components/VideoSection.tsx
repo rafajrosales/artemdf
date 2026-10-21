@@ -42,16 +42,16 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
       poster: '/gallery/navidad_thumb_01.jpg',
       badge: '🎄 Publicación Especial · Temporada Navideña',
       title: 'Villa Navideña Artesanal en MDF 3 mm',
-      tagline: 'Casitas con luz interior, ventanales calados y pino navideño central',
-      description: 'Disfruta el video oficial de nuestra villa navideña artesanal: un conjunto modular de casitas cortadas al milímetro con láser LED en MDF de 3 mm, techos calados, chimeneas y pino central para iluminar tus celebraciones de fin de año.',
+      tagline: 'Casitas de madera natural, tejados calados y pino navideño (sin luz)',
+      description: 'Disfruta el video oficial de nuestra villa navideña artesanal: un conjunto decorativo de casitas cortadas al milímetro con láser LED en MDF de 3 mm al natural, sin instalación eléctrica (modelo sin luz), con acabados limpios, techos calados, chimeneas y pino central para decorar nacimientos, repisas o mesas.',
       bulletPoints: [
         {
-          title: 'Casitas de la Villa con Tejado a Dos Aguas',
-          desc: 'Piezas modulares de 8 a 12 cm de alto en MDF 3 mm con ventanas y chimeneas caladas, listas para alojar microguirnaldas LED cálidas.'
+          title: 'Casitas en MDF 3 mm Natural (Sin Luz)',
+          desc: 'Piezas decorativas de 8 a 12 cm de alto en MDF 3 mm sin componentes eléctricos ni luces, con ventanas y chimeneas caladas y ensamble limpio.'
         },
         {
           title: 'Pino Navideño Central Calado',
-          desc: 'Árbol decorativo geométrico con base firme y orificios de luz que proyectan sombras festivas sobre la mesa o repisa.'
+          desc: 'Árbol decorativo geométrico con base concéntrica firme y siluetas caladas para acompañar la aldea navideña.'
         },
         {
           title: 'Formato Óptimo & Madera Calibrada (40 cm)',
@@ -213,7 +213,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({
               }`}
             >
               <TreePine className="w-4 h-4 text-emerald-300" />
-              <span>🎄 Edición Navideña (Villa con Luz)</span>
+              <span>🎄 Edición Navideña (Villa sin Luz)</span>
             </button>
 
             <button
