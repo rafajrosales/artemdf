@@ -23,6 +23,7 @@ import { useCatalog } from '../context/CatalogContext';
 interface GalleryProps {
   onSelectForQuote: (item: GalleryItem) => void;
   selectedItemId?: string | null;
+  selectedCategory?: string | null;
 }
 
 const CATEGORIES = [
@@ -37,7 +38,7 @@ const CATEGORIES = [
   'Decoración & Arte'
 ] as const;
 
-export const Gallery: React.FC<GalleryProps> = ({ onSelectForQuote, selectedItemId }) => {
+export const Gallery: React.FC<GalleryProps> = ({ onSelectForQuote, selectedItemId, selectedCategory }) => {
   const { items, setIsAdminOpen } = useCatalog();
   const [activeCategory, setActiveCategory] = useState<string>('Todos');
   const [searchQuery, setSearchQuery] = useState('');
@@ -45,6 +46,13 @@ export const Gallery: React.FC<GalleryProps> = ({ onSelectForQuote, selectedItem
   const [activeItem, setActiveItem] = useState<GalleryItem | null>(null);
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [layoutMode, setLayoutMode] = useState<'bento' | 'compact'>('bento');
+
+  // Handle category update from parent (e.g. from VideoSection Christmas button)
+  useEffect(() => {
+    if (selectedCategory) {
+      setActiveCategory(selectedCategory);
+    }
+  }, [selectedCategory]);
 
   // Handle selected item from props if user clicked from hero
   useEffect(() => {

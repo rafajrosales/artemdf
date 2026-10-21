@@ -48,9 +48,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote, onSelectHeroItem }) => 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: 7 cols */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#E8AF50]">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Taller de Corte Láser LED · MDF 3 mm únicamente · Hasta 40 cm</span>
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#E8AF50]">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Taller Láser LED · MDF 3 mm · Hasta 40 cm</span>
+              </div>
+              <a
+                href="#showreel"
+                className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-amber-200 bg-red-950/70 border border-red-500/40 rounded-full hover:bg-red-900/80 transition-colors shadow-sm"
+              >
+                <span>🎄 Video Especial Navidad</span>
+                <span className="text-[10px] text-amber-400">Ver Villa →</span>
+              </a>
             </div>
 
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#F7EFE6] text-balance leading-[1.1]">

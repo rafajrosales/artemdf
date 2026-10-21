@@ -17,6 +17,7 @@ import { MessageCircle } from 'lucide-react';
 export default function App() {
   const [selectedQuoteItem, setSelectedQuoteItem] = useState<GalleryItem | null>(null);
   const [selectedGalleryHeroId, setSelectedGalleryHeroId] = useState<string | null>(null);
+  const [selectedGalleryCategory, setSelectedGalleryCategory] = useState<string | null>(null);
 
   const handleOpenQuote = () => {
     const el = document.getElementById('cotizador');
@@ -34,6 +35,14 @@ export default function App() {
     setSelectedGalleryHeroId(itemId);
   };
 
+  const handleSelectNavidadCategory = () => {
+    setSelectedGalleryCategory('Navidad & Festivos');
+    const el = document.getElementById('galeria');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <AuthProvider>
       <CatalogProvider>
@@ -49,13 +58,17 @@ export default function App() {
             onSelectHeroItem={handleHeroSelectItem} 
           />
 
-          {/* Video Showreel Section */}
-          <VideoSection />
+          {/* Video Showreel & Christmas Season Showcase */}
+          <VideoSection 
+            onSelectNavidadCategory={handleSelectNavidadCategory}
+            onOpenQuote={handleOpenQuote}
+          />
 
           {/* Interactive Gallery & Lightbox */}
           <Gallery 
             onSelectForQuote={handleSelectForQuote}
             selectedItemId={selectedGalleryHeroId}
+            selectedCategory={selectedGalleryCategory}
           />
 
           {/* Interactive Quote Calculator & Budget Builder (Max 40cm) */}

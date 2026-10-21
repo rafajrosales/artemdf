@@ -53,9 +53,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
           </a>
           <a
             href="#showreel"
-            className="hover:text-[#E8AF50] transition-colors whitespace-nowrap shrink-0"
+            className="hover:text-[#E8AF50] transition-colors whitespace-nowrap shrink-0 flex items-center gap-1.5"
           >
-            Showreel Video
+            <span>Video & Navidad</span>
+            <span className="text-xs">🎄</span>
           </a>
           <a
             href="#taller"
@@ -137,9 +138,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
             <a
               href="#showreel"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-1 hover:text-[#E8AF50] transition-colors"
+              className="py-1 hover:text-[#E8AF50] transition-colors flex items-center gap-1.5"
             >
-              Showreel Video
+              <span>Video & Navidad</span>
+              <span>🎄</span>
             </a>
             <a
               href="#taller"
