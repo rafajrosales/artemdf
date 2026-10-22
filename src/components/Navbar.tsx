@@ -140,12 +140,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
       {mobileMenuOpen && (
         <>
           <div 
-            className="md:hidden fixed inset-0 top-16 sm:top-20 z-40 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200"
+            className="md:hidden fixed inset-0 top-16 sm:top-20 z-40 bg-black/75 backdrop-blur-md animate-in fade-in duration-200"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
-          <div className="md:hidden relative z-50 bg-[#1E1712] border-b border-[#3D2C20] px-5 py-6 space-y-4 max-h-[calc(100vh-4rem)] overflow-y-auto shadow-2xl animate-in slide-in-from-top-2 duration-200">
-            <nav className="flex flex-col space-y-1 text-base text-[#D4C5B8]">
+          <div className="md:hidden fixed top-16 sm:top-20 left-0 right-0 z-50 bg-[#18120D] border-b border-[#3D2C20] px-5 py-5 space-y-3.5 max-h-[calc(100vh-4rem)] overflow-y-auto shadow-2xl animate-in slide-in-from-top-2 duration-200">
+            <nav className="flex flex-col space-y-1 text-sm text-[#D4C5B8]">
               <a
                 href="#galeria"
                 onClick={() => setMobileMenuOpen(false)}
@@ -205,7 +205,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
                 {isAdmin ? (
                   <>
                     <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                    <span>Admin Activo: {user?.email || 'rafajrosales@gmail.com'}</span>
+                    <span className="truncate">Admin: {user?.email || 'rafajrosales@gmail.com'}</span>
                   </>
                 ) : (
                   <>
