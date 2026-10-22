@@ -775,7 +775,7 @@ export const FAQS = [
   },
   {
     q: '¿Cómo son las entregas personales y qué zonas cubren?',
-    a: 'Nuestras entregas son 100% personales y directas en mano: 1) Zona Norte de la CDMX y zonas cercanas: entregas a convenir en puntos de encuentro acordados (sin costo de recargo). 2) Los Héroes Tecámac y alrededores: aplica un 10% adicional por concepto de traslado y logística. No manejamos envíos foráneos a otros estados de la República Mexicana para garantizar que cada pieza llegue en perfecto estado.'
+    a: 'Nuestras entregas son 100% personales y directas en mano en Zona Norte de la CDMX y Los Héroes Tecámac. Todos los envíos y entregas aplican un 10% adicional por concepto de traslado y logística. No manejamos envíos foráneos a otros estados de la República Mexicana para garantizar que cada pieza llegue en perfecto estado.'
   },
   {
     q: '¿Por qué cortar en MDF de 3 mm?',

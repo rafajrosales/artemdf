@@ -102,9 +102,9 @@ export const QuoteCalculator: React.FC<QuoteCalculatorProps> = ({
     const discountAmount = Math.round(subtotal * discountPercent);
     const subtotalAfterDiscount = subtotal - discountAmount;
 
-    // Delivery surcharge: +10% extra for Los Héroes Tecámac and nearby zones
-    const deliveryExtraPercent = deliveryZone === 'tecamac' ? 10 : 0;
-    const deliveryExtraAmount = deliveryZone === 'tecamac' ? Math.round(subtotalAfterDiscount * 0.10) : 0;
+    // Delivery surcharge: +10% extra for all shipments/deliveries
+    const deliveryExtraPercent = 10;
+    const deliveryExtraAmount = Math.round(subtotalAfterDiscount * 0.10);
     const total = subtotalAfterDiscount + deliveryExtraAmount;
 
     return {
@@ -141,8 +141,8 @@ export const QuoteCalculator: React.FC<QuoteCalculatorProps> = ({
     };
 
     const deliveryLabels = {
-      norte_cdmx: 'Entrega personal a convenir en Zona Norte CDMX y zonas cercanas (sin recargo)',
-      tecamac: 'Los Héroes Tecámac y alrededores (+10% extra por traslado)'
+      norte_cdmx: 'Entrega en Zona Norte CDMX y cercanas (+10% envío/traslado)',
+      tecamac: 'Los Héroes Tecámac y alrededores (+10% envío/traslado)'
     };
 
     return `¡Hola ArteMDF! Me gustaría solicitar un presupuesto con las siguientes características:
@@ -156,7 +156,7 @@ ${selectedItem ? `- *Modelo de Referencia:* ${selectedItem.title}` : ''}
 - *Grabado personalizado:* ${includeCustomEngraving ? (customText ? `"${customText}"` : 'Sí') : 'Sin grabado'}
 - *Cantidad:* ${quantity} pieza(s)
 - *Zona de Entrega:* ${deliveryLabels[deliveryZone]}
-- *Total Estimado:* $${estimate.total} MXN${estimate.deliveryExtraAmount > 0 ? ` (incluye +10% traslado Tecámac: +$${estimate.deliveryExtraAmount} MXN)` : ''}${estimate.discountPercent > 0 ? ` (incluye ${estimate.discountPercent}% desc. volumen)` : ''}
+- *Total Estimado:* $${estimate.total} MXN (incluye +10% envío/traslado: +$${estimate.deliveryExtraAmount} MXN)${estimate.discountPercent > 0 ? ` (incluye ${estimate.discountPercent}% desc. volumen)` : ''}
 
 *Datos del cliente:*
 - *Nombre:* ${clientName || 'Por definir'}
@@ -239,8 +239,7 @@ ${attachedFileName ? `- *Archivo de referencia:* ${attachedFileName}` : ''}
               Taller ArteMDF: MDF 3 mm · Cama 40x40 cm · Políticas de Entrega
             </span>
             <p className="text-[#BCAAA0] leading-relaxed text-[11px] sm:text-xs">
-              • <strong>Zona Norte CDMX y zonas cercanas</strong>: Entregas personales a convenir en puntos acordados (sin costo extra).<br />
-              • <strong>Los Héroes Tecámac y alrededores</strong>: Aplica un <strong>10% adicional</strong> por concepto de traslado.<br />
+              • <strong>Envíos y Entregas Personales (Zona Norte CDMX & Los Héroes Tecámac)</strong>: Todas las entregas y envíos aplican un <strong>10% adicional</strong> por concepto de traslado y logística.<br />
               • <strong>Entrega directa en mano</strong>: No realizamos envíos a otros estados de la República Mexicana para asegurar la calidad de cada pieza.
             </p>
           </div>
@@ -513,11 +512,11 @@ ${attachedFileName ? `- *Archivo de referencia:* ${attachedFileName}` : ''}
                       <MapPin className="w-3.5 h-3.5 text-[#E09F3E]" />
                       <span>Zona Norte CDMX & Cercanas</span>
                     </div>
-                    <span className="text-[11px] text-[#D8B589] block mt-1">
-                      A convenir (Punto de encuentro acordado)
+                    <span className="text-[11px] text-[#E8AF50] font-semibold block mt-1">
+                      +10% extra por envío y traslado
                     </span>
-                    <span className="text-[10px] text-emerald-400 font-medium block">
-                      Sin recargo adicional
+                    <span className="text-[10px] text-[#8F7D70] block">
+                      Entrega coordinada
                     </span>
                   </button>
 
