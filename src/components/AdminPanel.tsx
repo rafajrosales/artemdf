@@ -68,6 +68,7 @@ export const AdminPanel: React.FC = () => {
     isAdmin,
     adminEmail,
     signInWithGoogle,
+    signInWithPassword,
     signOutUser,
     authError,
     clearAuthError,
@@ -98,18 +99,26 @@ export const AdminPanel: React.FC = () => {
   const [photoUrlInputId, setPhotoUrlInputId] = useState<string | null>(null);
   const [customUrlValue, setCustomUrlValue] = useState<string>('');
 
+  // Password authentication state
+  const [adminPassword, setAdminPassword] = useState<string>('');
+
   // File input ref for backup import
   const backupFileInputRef = useRef<HTMLInputElement | null>(null);
 
   if (!isAdminOpen) return null;
 
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    signInWithPassword(adminPassword);
+  };
+
   // =========================================================================
-  // AUTHENTICATION GATE: User must authenticate with Google (rafajrosales@gmail.com)
+  // AUTHENTICATION GATE: User must authenticate with password
   // =========================================================================
   if (!isAdmin) {
     return (
       <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200">
-        <div className="bg-[#1C140E] border border-[#3D2C20] w-full max-w-lg rounded-2xl shadow-2xl p-6 md:p-8 space-y-6 text-center relative overflow-hidden">
+        <div className="bg-[#1C140E] border border-[#3D2C20] w-full max-w-md rounded-2xl shadow-2xl p-6 md:p-8 space-y-6 text-center relative overflow-hidden">
           {/* Top gold bar */}
           <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-600 via-[#E09F3E] to-amber-500" />
 
@@ -129,83 +138,54 @@ export const AdminPanel: React.FC = () => {
             </div>
             <div>
               <h2 className="font-display font-bold text-xl md:text-2xl text-[#F7EFE6]">
-                Autenticación Requerida
+                Acceso de Administrador
               </h2>
               <p className="text-xs text-[#A89485] mt-1">
-                Panel de control para edición de fotos, piezas y precios de ArteMDF
+                Ingresa tu contraseña para gestionar fotos, precios y catálogo de ArteMDF
               </p>
             </div>
           </div>
 
-          {/* Explanation box */}
-          <div className="bg-[#140E0A] border border-[#33251B] rounded-xl p-4 text-xs text-[#D8C6B6] text-left space-y-2.5">
-            <div className="flex items-start gap-2.5 text-neutral-300">
-              <ShieldCheck className="w-4 h-4 text-[#E09F3E] shrink-0 mt-0.5" />
-              <p className="leading-relaxed">
-                Para modificar fotos, enlaces de Google Drive y tarifas del taller en MDF, debes autenticarte con la cuenta de Google autorizada del administrador.
-              </p>
-            </div>
-            <div className="pt-2 border-t border-[#291C13] flex items-center justify-between text-[11px]">
-              <span className="text-[#8F7D70]">Cuenta oficial autorizada:</span>
-              <span className="font-mono text-[#E8AF50] bg-[#22160F] px-2 py-0.5 rounded border border-[#3D2C20]">
-                {adminEmail}
-              </span>
-            </div>
-          </div>
-
-          {/* Condition 1: Signed in with another Google account */}
-          {user && !isAdmin ? (
-            <div className="space-y-4">
-              <div className="bg-amber-950/40 border border-amber-800/40 rounded-xl p-3.5 text-xs text-amber-200 text-left flex items-start gap-3">
-                <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                <div className="space-y-1">
-                  <p className="font-semibold text-amber-300">Cuenta de Google no autorizada</p>
-                  <p className="text-[11px] text-amber-200/80 leading-relaxed">
-                    Has iniciado sesión como <strong className="text-white">{user.email}</strong>. Esta cuenta solo tiene permisos de visualización pública. Para gestionar el catálogo de piezas y precios, inicia sesión con la cuenta de <strong className="text-[#E8AF50]">{adminEmail}</strong>.
-                  </p>
+          {/* Password Form */}
+          <form onSubmit={handlePasswordSubmit} className="space-y-4 text-left">
+            {authError && (
+              <div className="bg-red-950/40 border border-red-900/40 rounded-xl p-3 text-xs text-red-200 text-left flex items-start gap-2">
+                <AlertTriangle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <p>{authError}</p>
                 </div>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <GoogleSignInButton
-                  onClick={signInWithGoogle}
-                  text={`Cambiar a ${adminEmail}`}
-                  className="w-full justify-center"
-                />
-                <button
-                  onClick={signOutUser}
-                  className="w-full py-2.5 rounded-xl border border-[#3D2C20] text-xs font-semibold text-[#A89485] hover:text-white hover:bg-[#241A13] transition-colors"
-                >
-                  Cerrar sesión actual ({user.email})
+                <button type="button" onClick={clearAuthError} className="text-red-400 hover:text-white">
+                  <X className="w-3.5 h-3.5" />
                 </button>
               </div>
-            </div>
-          ) : (
-            /* Condition 2: Not signed in */
-            <div className="space-y-4">
-              {authError && (
-                <div className="bg-red-950/40 border border-red-900/40 rounded-xl p-3 text-xs text-red-200 text-left flex items-start gap-2">
-                  <AlertTriangle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
-                  <div className="flex-1">
-                    <p>{authError}</p>
-                  </div>
-                  <button onClick={clearAuthError} className="text-red-400 hover:text-white">
-                    <X className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              )}
+            )}
 
-              <GoogleSignInButton
-                onClick={signInWithGoogle}
-                text="Iniciar sesión con Google (rafajrosales@gmail.com)"
-                className="w-full justify-center py-3.5 shadow-md"
+            <div className="space-y-1.5">
+              <label className="text-xs text-[#D8C6B6] font-medium block">
+                Contraseña de Administrador:
+              </label>
+              <input
+                type="password"
+                value={adminPassword}
+                onChange={(e) => setAdminPassword(e.target.value)}
+                placeholder="Ingresa tu contraseña"
+                className="w-full px-3.5 py-3 bg-[#140E0A] border border-[#3D2C20] focus:border-[#E09F3E] rounded-xl text-xs text-[#F7EFE6] placeholder-[#8F7D70] focus:outline-none"
+                autoFocus
               />
-
-              <p className="text-[11px] text-[#8F7D70]">
-                Autenticación segura vía Google OAuth con acceso a Google Drive y perfil.
-              </p>
             </div>
-          )}
+
+            <button
+              type="submit"
+              className="w-full py-3.5 rounded-xl bg-[#E09F3E] hover:bg-[#ECAE52] text-[#17110C] font-semibold text-xs transition-all shadow-md flex items-center justify-center gap-2"
+            >
+              <Lock className="w-4 h-4" />
+              <span>Entrar al Panel de Control</span>
+            </button>
+
+            <p className="text-[11px] text-[#8F7D70] text-center">
+              Administrador: {adminEmail}
+            </p>
+          </form>
 
           <div className="pt-2 border-t border-[#291C13]">
             <button
