@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { X, Search, Image as ImageIcon, Loader2, Check, ExternalLink, RefreshCw, Folder } from 'lucide-react';
+import { X, Search, Image as ImageIcon, Loader2, Check, ExternalLink, RefreshCw, Folder, Lock } from 'lucide-react';
 import { fetchDriveImages, DriveImageFile, extractFolderIdFromUrl } from '../services/googleDriveService';
+import { useAuth } from '../context/AuthContext';
 
 interface GoogleDrivePickerModalProps {
   isOpen: boolean;
@@ -19,6 +20,7 @@ export const GoogleDrivePickerModal: React.FC<GoogleDrivePickerModalProps> = ({
   accessToken,
   targetItemTitle,
 }) => {
+  const { signInWithGoogle } = useAuth();
   const [folderInput, setFolderInput] = useState<string>(DEFAULT_FOLDER_ID);
   const [activeFolderId, setActiveFolderId] = useState<string | null>(DEFAULT_FOLDER_ID);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -29,7 +31,7 @@ export const GoogleDrivePickerModal: React.FC<GoogleDrivePickerModalProps> = ({
 
   const loadFiles = async (folderId: string | null, search: string) => {
     if (!accessToken) {
-      setError('Se requiere sesión iniciada con Google para consultar Google Drive.');
+      setError('Has iniciado sesión con contraseña. Para consultar directamente tu Google Drive por API, conecta tu cuenta de Google.');
       return;
     }
     setLoading(true);
@@ -162,7 +164,21 @@ export const GoogleDrivePickerModal: React.FC<GoogleDrivePickerModalProps> = ({
                 <ImageIcon className="w-6 h-6" />
               </div>
               <p className="text-xs max-w-md">{error}</p>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                {!accessToken && (
+                  <button
+                    onClick={async () => {
+                      const success = await signInWithGoogle();
+                      if (success) {
+                        loadFiles(activeFolderId, searchQuery);
+                      }
+                    }}
+                    className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow"
+                  >
+                    <Folder className="w-3.5 h-3.5" />
+                    <span>Conectar con Google para explorar Drive</span>
+                  </button>
+                )}
                 <button
                   onClick={() => loadFiles(activeFolderId, searchQuery)}
                   className="px-3.5 py-1.5 rounded-lg bg-[#E09F3E] text-[#17110C] text-xs font-semibold"
@@ -180,6 +196,9 @@ export const GoogleDrivePickerModal: React.FC<GoogleDrivePickerModalProps> = ({
                   Restaurar carpeta del taller
                 </button>
               </div>
+              <p className="text-[11px] text-[#8F7D70] mt-2 max-w-sm">
+                Nota: También puedes usar el botón <strong>URL</strong> en cualquier pieza del catálogo para pegar directamente cualquier enlace público de Google Drive.
+              </p>
             </div>
           ) : files.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center gap-2 text-[#A89485] text-xs">
