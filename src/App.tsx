@@ -46,7 +46,7 @@ export default function App() {
   return (
     <AuthProvider>
       <CatalogProvider>
-        <div className="min-h-screen bg-[#17110C] text-[#F7EFE6] flex flex-col selection:bg-[#E09F3E]/30 selection:text-[#E8C99B]">
+        <div className="min-h-screen bg-[#17110C] text-[#F7EFE6] flex flex-col selection:bg-[#E09F3E]/30 selection:text-[#E8C99B] overflow-x-hidden">
         {/* Top Navbar */}
         <Navbar onOpenQuote={handleOpenQuote} />
 
@@ -98,12 +98,12 @@ export default function App() {
           href="https://wa.me/?text=Hola%20ArteMDF%2C%20quisiera%20solicitar%20un%20presupuesto%20para%20un%20proyecto%20en%20MDF%20(formato%20hasta%2040cm)."
           target="_blank"
           rel="noreferrer"
-          className="fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-400 text-[#17110C] px-4 py-3 rounded-full font-semibold text-xs shadow-xl shadow-black/60 flex items-center gap-2 transition-transform hover:scale-105 active:scale-95 border border-emerald-400/40"
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 bg-emerald-500 hover:bg-emerald-400 text-[#17110C] px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-full font-semibold text-xs shadow-xl shadow-black/60 flex items-center gap-1.5 sm:gap-2 transition-transform hover:scale-105 active:scale-95 border border-emerald-400/40 max-w-[calc(100vw-2rem)] truncate"
           aria-label="Contactar por WhatsApp"
         >
-          <MessageCircle className="w-4 h-4 fill-[#17110C]" />
+          <MessageCircle className="w-4 h-4 fill-[#17110C] shrink-0" />
           <span className="hidden sm:inline font-bold">¿Dudas? Escríbenos por WhatsApp</span>
-          <span className="sm:hidden font-bold">WhatsApp</span>
+          <span className="sm:hidden font-bold truncate">WhatsApp</span>
         </a>
       </div>
     </CatalogProvider>
