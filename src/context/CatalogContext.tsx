@@ -34,12 +34,21 @@ export function formatDriveOrExternalUrl(url: string): string {
   // https://drive.google.com/file/d/FILE_ID/view...
   // https://drive.google.com/open?id=FILE_ID
   // https://drive.google.com/uc?id=FILE_ID
-  const driveRegex = /(?:drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=))([a-zA-Z0-9_-]+)/;
+  // https://docs.google.com/uc?id=FILE_ID
+  const driveRegex = /(?:drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=|thumbnail\?id=)|docs\.google\.com\/uc\?id=)([a-zA-Z0-9_-]+)/;
   const match = trimmed.match(driveRegex);
   if (match && match[1]) {
     const fileId = match[1];
     // Google's reliable thumbnail / direct CDN format
     return `https://lh3.googleusercontent.com/d/${fileId}`;
+  }
+
+  // Fallback for general id parameter in Google Drive URLs
+  if (trimmed.includes('google.com')) {
+    const paramMatch = trimmed.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+    if (paramMatch && paramMatch[1]) {
+      return `https://lh3.googleusercontent.com/d/${paramMatch[1]}`;
+    }
   }
 
   return trimmed;

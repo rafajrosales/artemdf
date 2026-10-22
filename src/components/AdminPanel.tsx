@@ -628,6 +628,16 @@ export const AdminPanel: React.FC = () => {
               Pega cualquier enlace directo de imagen web o un enlace compartido de <strong>Google Drive</strong> (ej: <code className="text-[#E8AF50]">https://drive.google.com/file/d/...</code>). El sistema lo convertirá automáticamente a formato compatible.
             </p>
 
+            <div className="p-3 rounded-lg bg-amber-950/40 border border-amber-900/50 text-[11px] text-amber-200/90 space-y-1">
+              <p className="font-semibold flex items-center gap-1.5 text-amber-300">
+                <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
+                <span>Importante sobre Google Drive:</span>
+              </p>
+              <p className="text-amber-200/70">
+                Para que Google Drive permita mostrar las imágenes en la web, el archivo debe tener permisos configurados como <strong>"Cualquier usuario que tenga el enlace"</strong> (Público). Si es privado, Google bloqueará la visualización.
+              </p>
+            </div>
+
             <div className="space-y-2">
               <label className="text-[11px] font-semibold text-[#D8C6B6] uppercase tracking-wider">
                 URL de la Imagen o Google Drive:
